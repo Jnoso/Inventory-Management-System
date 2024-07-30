@@ -18,12 +18,12 @@ namespace Inventory_Project.classes
 
         public BindingList<Part> AssociatedParts = new BindingList<Part>();
 
-        public Product(int productID, string name, decimal price, int inStock, int min, int max)
+        public Product(int productID, string name, int inStock, decimal price, int min, int max)
         {
             ProductID = productID;
             Name = name;
-            Price = price;
             InStock = inStock;
+            Price = price;
             Min = min;
             Max = max;
         }

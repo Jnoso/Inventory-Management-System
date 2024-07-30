@@ -119,7 +119,39 @@ namespace Inventory_Project
         //Save Button Click Event
         private void addProdSaveBtnClick(object sender, EventArgs e)
         {
+            string textName = addProductNameBox.Text;
+            int textInv = int.Parse(addProductInventoryBox.Text);
+            decimal textPrice = Math.Round(decimal.Parse(addProductPriceBox.Text), 2, MidpointRounding.AwayFromZero);
+            int textMin = int.Parse(addProductMinBox.Text);
+            int textMax = int.Parse(addProductMaxBox.Text);
 
+            //Error Checks Max and Min value
+            if (textMax < textMin)
+            {
+                MessageBox.Show("Maximum is less than minimum. Please correct your minimum and maximum values.");
+                return;
+            }
+
+            //Error Checks Inventory Value with Max/Min Value
+            if (textInv > textMax || textInv < textMin)
+            {
+                MessageBox.Show("Inventory value is out of the minimum and maximum value. Please correct your inventory value.");
+                return;
+            }
+
+            //Create Product
+            Product newProduct = new Product((Inventory.allProducts.Count + 1), textName, textInv, textPrice, textMin, textMax);
+
+            //Populate Associated Parts for the new product
+            foreach (Part part in tempParts)
+            {
+                newProduct.AddAssociatedPart(part);
+            }
+
+            //Populate Product DataGridView in Main Screen
+            Inventory.AddProduct(newProduct);
+
+            Close();
         }
 
 

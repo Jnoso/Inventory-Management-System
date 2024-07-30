@@ -118,8 +118,14 @@ namespace Inventory_Project.classes
             var exampleInHousePart = new InHouse(1, "Part 1", 5, 10.00m, 1, 10, 101);
             var exampleOutSourcePart = new OutSource(2, "Part 2", 3, 5.00m, 1, 5, "Corp");
 
+            var exampleProduct = new Product(1, "Product 1", 3, 20.00m, 1, 10);
+            var exampleProduct2 = new Product(2, "Product 2", 1, 10.00m, 5, 20);
+
             PartAdd(exampleInHousePart);
             PartAdd(exampleOutSourcePart);
+
+            AddProduct(exampleProduct);
+            AddProduct(exampleProduct2);
         }
     }
 }
