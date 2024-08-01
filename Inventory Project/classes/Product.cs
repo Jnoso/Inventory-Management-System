@@ -35,8 +35,32 @@ namespace Inventory_Project.classes
         }
 
         //removeAssociated Part Method
+        public bool RemoveAssociatedPart (int partId)
+        {
+            bool deleted = false;
+            foreach (Part part in AssociatedParts)
+            {
+                if (part.PartId == partId)
+                {
+                    return deleted = true;
+                }
+            }
+            return deleted;
+        }
 
         //Lookup Associated Part Method
+        public Part LookUpAssociatedPart(int partid)
+        {
+            foreach (Part part in AssociatedParts)
+            {
+                if (part.PartId == partid)
+                {
+                    return part;
+                }
+            }
+            return null;
+        }
+
 
     }
 

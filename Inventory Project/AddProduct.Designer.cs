@@ -84,6 +84,7 @@
             addProductSearchBtn.TabIndex = 4;
             addProductSearchBtn.Text = "Search";
             addProductSearchBtn.UseVisualStyleBackColor = true;
+            addProductSearchBtn.Click += addProdSrchBtnClick;
             // 
             // addProductSearchBox
             // 
@@ -263,6 +264,7 @@
             dgvAddProdAll.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAddProdAll.Size = new Size(485, 213);
             dgvAddProdAll.TabIndex = 24;
+            dgvAddProdAll.DataBindingComplete += partsBindComplete;
             // 
             // dgvAddProdAsso
             // 

@@ -64,6 +64,7 @@
             modifyProductSaveBtn.TabIndex = 45;
             modifyProductSaveBtn.Text = "Save";
             modifyProductSaveBtn.UseVisualStyleBackColor = true;
+            modifyProductSaveBtn.Click += modProdSaveBtnClick;
             // 
             // label9
             // 
@@ -81,6 +82,7 @@
             modifyProductMinBox.Name = "modifyProductMinBox";
             modifyProductMinBox.Size = new Size(105, 27);
             modifyProductMinBox.TabIndex = 40;
+            modifyProductMinBox.TextChanged += modProdMinTextChng;
             // 
             // modifyProductMaxBox
             // 
@@ -88,6 +90,7 @@
             modifyProductMaxBox.Name = "modifyProductMaxBox";
             modifyProductMaxBox.Size = new Size(105, 27);
             modifyProductMaxBox.TabIndex = 39;
+            modifyProductMaxBox.TextChanged += modProdMaxTextChng;
             // 
             // modifyProductPriceBox
             // 
@@ -95,6 +98,7 @@
             modifyProductPriceBox.Name = "modifyProductPriceBox";
             modifyProductPriceBox.Size = new Size(195, 27);
             modifyProductPriceBox.TabIndex = 38;
+            modifyProductPriceBox.TextChanged += modProdPriceTextChng;
             // 
             // modifyProductInventoryBox
             // 
@@ -102,6 +106,7 @@
             modifyProductInventoryBox.Name = "modifyProductInventoryBox";
             modifyProductInventoryBox.Size = new Size(195, 27);
             modifyProductInventoryBox.TabIndex = 37;
+            modifyProductInventoryBox.TextChanged += modProdInvTextChng;
             // 
             // modifyProductNameBox
             // 
@@ -109,6 +114,7 @@
             modifyProductNameBox.Name = "modifyProductNameBox";
             modifyProductNameBox.Size = new Size(195, 27);
             modifyProductNameBox.TabIndex = 36;
+            modifyProductNameBox.TextChanged += modProdNameBoxChng;
             // 
             // modifyProductDelBtn
             // 
@@ -119,6 +125,7 @@
             modifyProductDelBtn.TabIndex = 44;
             modifyProductDelBtn.Text = "Delete";
             modifyProductDelBtn.UseVisualStyleBackColor = true;
+            modifyProductDelBtn.Click += modProdDelBtnClick;
             // 
             // modifyProductAddBtn
             // 
@@ -129,6 +136,7 @@
             modifyProductAddBtn.TabIndex = 43;
             modifyProductAddBtn.Text = "Add";
             modifyProductAddBtn.UseVisualStyleBackColor = true;
+            modifyProductAddBtn.Click += modProdAddBtn;
             // 
             // modifyProductCancBtn
             // 
@@ -139,11 +147,13 @@
             modifyProductCancBtn.TabIndex = 46;
             modifyProductCancBtn.Text = "Cancel";
             modifyProductCancBtn.UseVisualStyleBackColor = true;
+            modifyProductCancBtn.Click += modProdCancBtnClick;
             // 
             // modifyProductIdText
             // 
             modifyProductIdText.Location = new Point(148, 237);
             modifyProductIdText.Name = "modifyProductIdText";
+            modifyProductIdText.ReadOnly = true;
             modifyProductIdText.Size = new Size(195, 27);
             modifyProductIdText.TabIndex = 35;
             // 
@@ -217,6 +227,7 @@
             modifyProductSearchBtn.TabIndex = 27;
             modifyProductSearchBtn.Text = "Search";
             modifyProductSearchBtn.UseVisualStyleBackColor = true;
+            modifyProductSearchBtn.Click += modProdSrchBtnClick;
             // 
             // label2
             // 
@@ -252,6 +263,7 @@
             dgvModProdAll.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvModProdAll.Size = new Size(485, 213);
             dgvModProdAll.TabIndex = 47;
+            dgvModProdAll.DataBindingComplete += partsBindingComplete;
             // 
             // dgvModProdAsso
             // 

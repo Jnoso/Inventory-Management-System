@@ -237,6 +237,7 @@ namespace Inventory_Project
             CheckTextBoxValid();
         }
 
+        //Save Button Click Event
         private void modSaveBtnClick(object sender, EventArgs e)
         {
             int partid = int.Parse(modifyIdTextBox.Text);

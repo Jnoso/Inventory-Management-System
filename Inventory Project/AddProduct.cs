@@ -25,9 +25,11 @@ namespace Inventory_Project
             //Take Form1 DGV and Set it to All Parts DGV
             mainForm = form1;
             dgvAddProdAll.DataSource = mainForm.dgvPart.DataSource;
+            
 
             //Create new bindinglist for AssociatedParts 
             dgvAddProdAsso.DataSource = tempParts;
+            
 
             //Initially Set Textbox Color to Red
             addProductNameBox.BackColor = Color.Red;
@@ -35,6 +37,12 @@ namespace Inventory_Project
             addProductPriceBox.BackColor = Color.Red;
             addProductMaxBox.BackColor = Color.Red;
             addProductMinBox.BackColor = Color.Red;
+        }
+
+        private void partsBindComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvAddProdAll.ClearSelection();
+            dgvAddProdAsso.ClearSelection();
         }
 
         //Cancel Btn Clicked
@@ -78,7 +86,7 @@ namespace Inventory_Project
         {
 
             //Error Check to see if Row is Selected
-            if (dgvAddProdAll.CurrentRow.Selected == false)
+            if (dgvAddProdAll.CurrentRow == null || dgvAddProdAll.CurrentRow.Selected == false)
             {
                 MessageBox.Show("Please select a Part to Add");
                 return;
@@ -87,7 +95,7 @@ namespace Inventory_Project
             else
             {
                 int partId = (int)dgvAddProdAll.CurrentRow.Cells["PartId"].Value;
-                Part selectedPart = Inventory.allParts.FirstOrDefault(x => x.PartId == partId);
+                Part selectedPart = Inventory.LookUpPart(partId);
                 tempParts.Add(selectedPart);
             }
         }
@@ -95,7 +103,8 @@ namespace Inventory_Project
         //Delete Btn Event. Remove from Associated Part List
         private void delAssoPartBtn(object sender, EventArgs e)
         {
-            if (dgvAddProdAsso.CurrentRow.Selected == false)
+            
+            if ( dgvAddProdAsso.CurrentRow == null || dgvAddProdAsso.CurrentRow.Selected == false)
             {
                 MessageBox.Show("Please select a Part to Delete");
                 return;
@@ -106,7 +115,7 @@ namespace Inventory_Project
                 if (dialogresult == DialogResult.Yes)
                 {
                     int partId = (int)dgvAddProdAsso.CurrentRow.Cells["PartId"].Value;
-                    Part selectedPart = tempParts.FirstOrDefault(x => x.PartId == partId);
+                    Part selectedPart = Inventory.LookUpPart(partId);
                     tempParts.Remove(selectedPart);
                 }
                 else if (dialogresult == DialogResult.No)
@@ -115,6 +124,31 @@ namespace Inventory_Project
                 }
             }
         }
+
+        //Search Btn Click Event
+        private void addProdSrchBtnClick(object sender, EventArgs e)
+        {
+            string searchUserInput = addProductSearchBox.Text.ToLower();
+            Part searchPart = Inventory.allParts.FirstOrDefault(p => p.Name.ToLower().Contains(searchUserInput));
+
+            if (searchPart != null)
+            {
+                int selectedPartId = (int)searchPart.PartId;
+                Part matchingPart = Inventory.LookUpPart(selectedPartId);
+
+                foreach (DataGridViewRow row in dgvAddProdAll.Rows)
+                {
+                    Part part = row.DataBoundItem as Part;
+                    if (part.PartId == matchingPart.PartId)
+                    {
+                        dgvAddProdAll.CurrentCell = row.Cells[0];
+                        row.Selected = true;
+                        break;
+                    }
+                }
+            }
+        }
+
 
         //Save Button Click Event
         private void addProdSaveBtnClick(object sender, EventArgs e)
@@ -222,5 +256,7 @@ namespace Inventory_Project
 
             addProductSaveBtn.Enabled = allValid;
         }
+
+        
     }
 }

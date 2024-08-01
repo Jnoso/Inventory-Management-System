@@ -27,9 +27,11 @@ namespace Inventory_Project.classes
         }
 
         //abstract method for InHouse
+        //Abstract method in PartSelection.CS
         public abstract int MachineId();
 
         //abstract method for Outsourced
+        //Abstract method in PartSelection.CS
         public abstract string CompanyName();
 
 

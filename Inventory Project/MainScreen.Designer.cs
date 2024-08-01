@@ -33,7 +33,7 @@
             label3 = new Label();
             partSearchButton = new Button();
             partsID = new TextBox();
-            productsID = new TextBox();
+            productsTextBox = new TextBox();
             productSearchButton = new Button();
             addPartBtn = new Button();
             modifyPartBtn = new Button();
@@ -96,12 +96,12 @@
             partsID.Size = new Size(180, 27);
             partsID.TabIndex = 6;
             // 
-            // productsID
+            // productsTextBox
             // 
-            productsID.Location = new Point(1293, 110);
-            productsID.Name = "productsID";
-            productsID.Size = new Size(180, 27);
-            productsID.TabIndex = 8;
+            productsTextBox.Location = new Point(1293, 110);
+            productsTextBox.Name = "productsTextBox";
+            productsTextBox.Size = new Size(180, 27);
+            productsTextBox.TabIndex = 8;
             // 
             // productSearchButton
             // 
@@ -112,6 +112,7 @@
             productSearchButton.TabIndex = 7;
             productSearchButton.Text = "Search";
             productSearchButton.UseVisualStyleBackColor = true;
+            productSearchButton.Click += prodSrchBtnClick;
             // 
             // addPartBtn
             // 
@@ -155,6 +156,7 @@
             delProductBtn.TabIndex = 14;
             delProductBtn.Text = "Delete";
             delProductBtn.UseVisualStyleBackColor = true;
+            delProductBtn.Click += delProdBtnClick;
             // 
             // modifyProductBtn
             // 
@@ -165,6 +167,7 @@
             modifyProductBtn.TabIndex = 13;
             modifyProductBtn.Text = "Modify";
             modifyProductBtn.UseVisualStyleBackColor = true;
+            modifyProductBtn.Click += modProdBtnClick;
             // 
             // addProductBtn
             // 
@@ -233,7 +236,7 @@
             Controls.Add(delPartBtn);
             Controls.Add(modifyPartBtn);
             Controls.Add(addPartBtn);
-            Controls.Add(productsID);
+            Controls.Add(productsTextBox);
             Controls.Add(productSearchButton);
             Controls.Add(partsID);
             Controls.Add(partSearchButton);
@@ -254,7 +257,7 @@
         private Label label3;
         private Button partSearchButton;
         private TextBox partsID;
-        private TextBox productsID;
+        private TextBox productsTextBox;
         private Button productSearchButton;
         private Button addPartBtn;
         private Button modifyPartBtn;

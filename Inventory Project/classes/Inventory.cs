@@ -88,10 +88,16 @@ namespace Inventory_Project.classes
             }
         }
         //LookUp Part in BindingList
-        public static int LookUpPart(Part part)
+        public static Part LookUpPart(int partid)
         {
-            int selectPartId = part.PartId;
-            return selectPartId;
+            foreach (Part part in allParts)
+            {
+                if(part.PartId == partid)
+                {
+                    return part;
+                }
+            }
+            return null;
             
         }
         
@@ -111,6 +117,52 @@ namespace Inventory_Project.classes
         {
             allProducts.Add(product);
         }
+
+        //LookUp Product Method
+        public static Product LookUpProduct(int productid)
+        {
+            foreach (Product product in allProducts)
+            {
+                if(product.ProductID == productid)
+                {
+                    return product;
+                }
+            }
+            return null;
+        }
+
+        //Update Product Method
+        public static void UpdateProduct(int productid, Product product)
+        {
+            foreach (Product toBeModifiedProduct in allProducts)
+            {
+                if (toBeModifiedProduct.ProductID == productid)
+                {
+                    toBeModifiedProduct.ProductID = product.ProductID;
+                    toBeModifiedProduct.Name = product.Name;
+                    toBeModifiedProduct.InStock = product.InStock;
+                    toBeModifiedProduct.Price = product.Price;
+                    toBeModifiedProduct.Min = product.Min;
+                    toBeModifiedProduct.Max = product.Max;
+                    toBeModifiedProduct.AssociatedParts = product.AssociatedParts;
+                    return;
+                }
+            }
+        }
+
+        //Remove Product Method
+        public static bool RemoveProduct(int productid)
+        {
+            bool boolDeleted = false;
+            foreach (Product product in allProducts)
+            {
+                if (product.ProductID == productid)
+                {
+                    return boolDeleted = true;
+                }
+            }
+            return boolDeleted;
+        }
         
         //Items to populate grid
         public static void PopulateGrid()
@@ -119,7 +171,7 @@ namespace Inventory_Project.classes
             var exampleOutSourcePart = new OutSource(2, "Part 2", 3, 5.00m, 1, 5, "Corp");
 
             var exampleProduct = new Product(1, "Product 1", 3, 20.00m, 1, 10);
-            var exampleProduct2 = new Product(2, "Product 2", 1, 10.00m, 5, 20);
+            var exampleProduct2 = new Product(2, "Product 2", 8, 10.00m, 5, 20);
 
             PartAdd(exampleInHousePart);
             PartAdd(exampleOutSourcePart);
