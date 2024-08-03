@@ -73,8 +73,25 @@ namespace Inventory_Project
                 {
                     int partid = (int)dgvPart.CurrentRow.Cells["PartId"].Value;
                     Part selectedPart = Inventory.LookUpPart(partid);
+                    Part inAssociatedPart = null;
 
-                    if (selectedPart != null)
+                    //Loop through all product to check if part is in that product's
+                    //AssociatedPart BindingList
+                    for (int i = 0; i<dgvProduct.Rows.Count; i++)
+                    {
+                        Product product = Inventory.LookUpProduct(i+1);
+                        if (product != null)
+                        {
+                            inAssociatedPart = product.LookUpAssociatedPart(partid);
+
+                            if (inAssociatedPart != null)
+                            {
+                                break;
+                            }
+                        }
+                    }
+
+                    if (selectedPart != null && inAssociatedPart == null)
                     {
                         bool isDeleted = Inventory.DeletePart(selectedPart);
                         if (isDeleted)
@@ -87,6 +104,11 @@ namespace Inventory_Project
                         {
                             MessageBox.Show("Failed to delete item");
                         }
+                    }
+                    else if (selectedPart != null && inAssociatedPart != null)
+                    {
+                        MessageBox.Show("Item is in Product's Associated Part. Can not delete");
+                        return;
                     }
 
                 }
